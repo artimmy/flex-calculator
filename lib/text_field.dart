@@ -9,54 +9,90 @@ class TextInput extends StatefulWidget {
 
 class _TextInputState extends State<TextInput> {
 
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _controllerAlcohol = TextEditingController();
+  TextEditingController _controllerGasoline = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       appBar: AppBar(
-        title: const Text("Text Input"),
+        title: const Text("Alcohol or Gasoline"),
         centerTitle: true,
       ),
 
-      body: Center(
+      body: Container(
+        
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
 
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          
-          children: [
-            Padding(
-              padding: EdgeInsets.all(32),
+            children: <Widget>[
+            // Image 
+            Image.asset("images/logo.png"),
 
-              // Text Field
-              child: TextField(
-                // text, number, emailAddres, datetime
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "Type a number",
-                ),
-                //enabled: false, //this is equivalet to 'input disabled attribute' in html
-                //maxLength: 5,
-                //maxLengthEnforced: false,
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.blue,
-                ),
-                //obscureText: true, // usefull for password text field
-                //onChanged: (String text){ print(text); }, // if you use this you have to remove const on children
-                //onSubmitted: (String text){ print(text); }, // if you use this you have to remove const on children
-                controller: _textEditingController, // if you use this you have to remove const on children
-
+            // Text
+            const Text(
+              "Find out which is the best option for fueling your car", 
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
               ),
-                            
             ),
 
-            ElevatedButton(onPressed: (){ print(_textEditingController.text); }, child: Text("Save"))
-            
+            // TextField
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: "Alcohol Price i.e: 3.50",
+              ),
+              style: const TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+              ),
+              controller: _controllerAlcohol,
+            ),
+
+            // TextField
+             TextField(
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: "Gasoline Price i.e: 5.10",
+              ),
+              style: const TextStyle(
+                fontSize: 25,
+                color: Colors.black,
+              ),
+              controller: _controllerGasoline,
+            ),
+
+            // Button
+            ElevatedButton(
+              onPressed: (){}, 
+              child: const Text("Calculate", 
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+
+            // Text Result
+            const Text(
+              "Result", 
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
           ],
 
+          ),
+          
         ),
 
       ),
